@@ -1,2 +1,2 @@
-# md5shellext
+# MD5shellext
 Generate MD5 checksum for any file in windows explorer
