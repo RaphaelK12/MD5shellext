@@ -12,6 +12,7 @@ call :PrintHeader
 
 :: First argument required
 set "setupSwitch=%~1"
+set "adminSwitch=%~2"
 if not defined setupSwitch (
     call :PrintUsage
     call :PrintFooter "Aborted."
@@ -21,7 +22,7 @@ if not defined setupSwitch (
 :: Check admin rights
 call :IsElevatedCMD
 if not "%errorlevel%"=="0" (
-    if "%~2"=="/uac" (
+    if "%adminSwitch%"=="/uac" (
         call :PrintFooter "Failed to elevate CMD."
         call :Exit
     ) else (
@@ -39,11 +40,11 @@ if not "%errorlevel%"=="0" (
 set "regasmDirectory=%regasmDirectory%\v4.0.30319"
 
 :: Setup MD5shellext server
-if "%~1"=="/install" (
+if "%setupSwitch%"=="/install" (
     "%regasmDirectory%\regasm.exe" /codebase "%~dp0\MD5shellext.dll" >nul 2>&1
     set "isArgumentValid=true"
 )
-if "%~1"=="/uninstall" (
+if "%setupSwitch%"=="/uninstall" (
     "%regasmDirectory%\regasm.exe" /unregister "%~dp0\MD5shellext.dll" >nul 2>&1
     set "isArgumentValid=true"
 )
