@@ -23,11 +23,11 @@ call :IsElevatedCMD
 if not "%errorlevel%"=="0" (
     if "%~2"=="/uac" (
         call :PrintFooter "Failed to elevate CMD."
-		call :Exit
-	) else (
-		call :PrintFooter "Elevating..."
-		call :RestartWithUAC "%setupSwitch%"
-	)
+        call :Exit
+    ) else (
+        call :PrintFooter "Elevating..."
+        call :RestartWithUAC "%setupSwitch%"
+    )
 )
 
 :: Determine framework root
