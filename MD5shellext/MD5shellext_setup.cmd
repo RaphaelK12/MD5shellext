@@ -2,12 +2,9 @@
 setlocal
 
 
-:Main:
-:: Some initialisation work
-title %~n0
-color 07
-cls
-chdir /d "%~dp0"
+:Main: "args="
+:: Some initialization work
+call :Initialize
 call :PrintHeader
 
 :: First argument required
@@ -83,6 +80,13 @@ echo \-------------------------------------------------------------------/
 exit /b
 
 :: PUBLIC
+
+:Initialize: ""
+title %~n0
+color 07
+cls
+chdir /d "%~dp0"
+exit /b
 
 :Is32bitOS: ""
 set "errorlevel=0"
